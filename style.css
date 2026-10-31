@@ -1,0 +1,181 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top center, #1b4332 0%, #081c15 45%, #2b0409 100%);
+    min-height: 100vh;
+    color: #ffffff;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- STAGE & CANVAS --- */
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* --- PISCA PISCA DE NATAL --- */
+.light-string {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    top: -6px;
+    left: 0;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.bulb {
+    width: 14px;
+    height: 20px;
+    border-radius: 50%;
+    position: relative;
+    animation: flash 1.2s infinite alternate;
+}
+.bulb::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 4px;
+    width: 6px;
+    height: 5px;
+    background: #222;
+    border-radius: 2px;
+}
+.bulb:nth-child(4n+1) { background: #ff2a2a; box-shadow: 0 0 15px #ff2a2a; animation-delay: 0s; }
+.bulb:nth-child(4n+2) { background: #ffd700; box-shadow: 0 0 15px #ffd700; animation-delay: 0.3s; }
+.bulb:nth-child(4n+3) { background: #2aff5f; box-shadow: 0 0 15px #2aff5f; animation-delay: 0.6s; }
+.bulb:nth-child(4n+4) { background: #00e5ff; box-shadow: 0 0 15px #00e5ff; animation-delay: 0.9s; }
+
+@keyframes flash {
+    0% { opacity: 0.3; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1.15); }
+}
+
+/* --- ANIMAÇÃO PAPAI NOEL --- */
+.santa-fly {
+    position: fixed;
+    top: 15%;
+    left: -300px;
+    z-index: 15;
+    pointer-events: none;
+    animation: flySanta 16s linear infinite;
+}
+
+@keyframes flySanta {
+    0% { left: -300px; top: 12%; transform: scale(0.8) rotate(-3deg); }
+    25% { top: 18%; }
+    50% { top: 10%; transform: scale(1.05) rotate(2deg); }
+    75% { top: 22%; }
+    100% { left: 105vw; top: 14%; transform: scale(0.85) rotate(-2deg); }
+}
+
+/* Rastro mágico do trenó */
+.sparkle-trail {
+    position: absolute;
+    right: -20px;
+    top: 40px;
+    width: 150px;
+    height: 30px;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.8), rgba(255, 255, 255, 0));
+    filter: blur(4px);
+    border-radius: 50%;
+}
+
+/* --- CARDS DE PRESENTES DO CRONÔMETRO --- */
+.gift-card {
+    background: linear-gradient(135deg, rgba(230, 57, 70, 0.85) 0%, rgba(144, 12, 63, 0.95) 100%);
+    border: 3px solid #FFD700;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,215,0,0.3);
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gift-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 18px 40px rgba(255, 215, 0, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* Fitas decorativas do presente */
+.gift-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 100%;
+    background: linear-gradient(90deg, #FFD700, #FFF5A5, #FFD700);
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+.gift-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 22px;
+    background: linear-gradient(180deg, #FFD700, #FFF5A5, #FFD700);
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(10, 10, 10, 0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 1rem;
+}
+
+/* --- BONECO DE NEVE ANIMADO --- */
+.snowman-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 25;
+    animation: bounceSlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes bounceSlow {
+    0% { transform: translateY(0) rotate(-1deg); }
+    100% { transform: translateY(-12px) rotate(2deg); }
+}
+
+.snowman-arm-left {
+    transform-origin: right center;
+    animation: waveArm 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes waveArm {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(25deg); }
+}
+
+/* --- BOTÃO DE MÚSICA ANIMADO --- */
+.music-pulse {
+    animation: pulseGlow 1.8s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.8); }
+    70% { box-shadow: 0 0 0 18px rgba(255, 215, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+/* Árvore de Natal Flutuante */
+.tree-bounce {
+    animation: floatTree 2.5s ease-in-out infinite alternate;
+}
+@keyframes floatTree {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
